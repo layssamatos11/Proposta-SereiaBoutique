@@ -1,0 +1,19 @@
+# Build na Netlify: npm run build, pasta publicada dist.
+# As rotas do React (produto, sacola, checkout) caem no index.html.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
